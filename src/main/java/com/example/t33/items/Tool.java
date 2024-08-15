@@ -1,5 +1,8 @@
 package com.example.t33.items;
 
+/*
+Tool - enum for tool types
+ */
 public enum Tool {
     CHNS(ToolType.CHAINSAW, ToolBrand.STIHL, ToolRate.CHAINSAWRATE),
     LADW(ToolType.LADDER, ToolBrand.WERNER, ToolRate.LADDERRATE),
@@ -19,6 +22,9 @@ public enum Tool {
         return tool;
     }
 
+    /*
+    contructor
+     */
     private Tool(ToolType type, ToolBrand brand, ToolRate rate) {
         this.type = type;
         this.brand = brand;

@@ -1,5 +1,8 @@
 package com.example.t33.items;
 
+/*
+ToolType - enum for tool type
+ */
 public enum ToolType {
     CHAINSAW("Chainsaw"),
     LADDER("Ladder"),

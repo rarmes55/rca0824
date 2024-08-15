@@ -3,9 +3,15 @@ package com.example.t33.items;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/*
+Holidays - Singleton - returns the observed day for Fourth of July or Labor Day
+ */
 public enum Holidays {
     INSTANCE;
 
+    /*
+    getIndependenceDay - returns the observed day for Fourth of July
+     */
     public static LocalDate getIndependenceDay(final LocalDate ld) {
         /*
             Independence Day, July 4th - If falls on weekend, it is observed on the closest weekday
@@ -26,6 +32,9 @@ public enum Holidays {
         return independenceDay;
     }
 
+    /*
+   getLaborDay - returns the observed day for Labor Day
+    */
     public static LocalDate getLaborDay(final LocalDate ld) {
         /*
             Labor Day - First Monday in September

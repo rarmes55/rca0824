@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+/*
+NegativeTests - all negative unit tests
+ */
 public class NegativeTests {
 
     // Test 1

@@ -3,7 +3,11 @@ package com.example.t33.items;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum AcmeToolRental {
+
+/*
+AcmeToolRentalStore - Singleton - The main class for the tool rental store
+ */
+public enum AcmeToolRentalStore {
     INSTANCE;
     private final List<RentalAgreement> processedRentalAgreements = new ArrayList<>();
 
@@ -11,6 +15,9 @@ public enum AcmeToolRental {
         return processedRentalAgreements;
     }
 
+    /*
+    processRentalAgreement - processes and stored the processed rental agreement
+     */
     public boolean processRentalAgreement(RentalAgreement rentalAgreement) {
         if (!rentalAgreement.isProcessed() && rentalAgreement.checkout()) {
             rentalAgreement.setProcessed(true);

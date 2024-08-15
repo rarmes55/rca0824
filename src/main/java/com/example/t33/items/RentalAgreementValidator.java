@@ -2,6 +2,9 @@ package com.example.t33.items;
 
 import jdk.jshell.spi.ExecutionControl;
 
+/*
+RentalAgreementValidator - performs input validation for a rental agreement
+ */
 public class RentalAgreementValidator {
 
     public static final String RENTAL_DAY_COUNT_SHOULD_BE_AN_INTEGER_1_OR_GREATER = "Rental day count should be an integer 1 or greater";
@@ -12,6 +15,9 @@ public class RentalAgreementValidator {
         this.rentalAgreement = rentalAgreement;
     }
 
+    /*
+    validateNumberDays - validates the number of days for a rental agreement
+     */
     public void validateNumberDays() throws ExecutionControl.UserException {
         if (rentalAgreement.getNumDays() <= 0) {
             throw new ExecutionControl.UserException(
@@ -22,6 +28,9 @@ public class RentalAgreementValidator {
         }
     }
 
+    /*
+    validateDiscountPercent - validates the discount percent for a rental agreement
+     */
     public void validateDiscountPercent() throws ExecutionControl.UserException {
         if (rentalAgreement.getDiscountPercent() < 0 || rentalAgreement.getDiscountPercent() > 100) {
             throw new ExecutionControl.UserException(

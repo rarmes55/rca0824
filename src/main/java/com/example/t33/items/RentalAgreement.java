@@ -67,6 +67,9 @@ public class RentalAgreement {
         this.processed = processed;
     }
 
+    /*
+    checkout - validates the input, prints and processes the rental agreement
+     */
     public boolean checkout() {
         if (!validateInput()) {
             return false;
@@ -76,6 +79,9 @@ public class RentalAgreement {
         return true;
     }
 
+    /*
+    printRentalAgreement - prints to the console the details of the rental agreement
+     */
     public void printRentalAgreement() {
         final StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator()).append("Rental Agreement:").append(System.lineSeparator());
@@ -95,31 +101,49 @@ public class RentalAgreement {
         System.out.println(sb.toString());
     }
 
+    /*
+    getDiscountAmount - calculates and returns the discount amount
+     */
     public BigDecimal getDiscountAmount() {
         final float charge = calculateChargeDays(tool) * Float.parseFloat(tool.getRate().getDailyCharge());
         return new BigDecimal(charge * discountPercent / 100).setScale(2, RoundingMode.HALF_DOWN);
     }
 
+    /*
+    getPreDiscountCharge - calculates the pre-discount charge
+     */
     public BigDecimal getPreDiscountCharge() {
         // the below cannot fail because the daily charge is statically defined
         final float charge = calculateChargeDays(tool) * Float.parseFloat(tool.getRate().getDailyCharge());
         return new BigDecimal(charge).setScale(2, RoundingMode.HALF_UP);
     }
 
+    /*
+    currencyFormat - returns BigDecimal n with the currency format
+     */
     public static String currencyFormat(final BigDecimal n) {
         return NumberFormat.getCurrencyInstance().format(n);
     }
 
+    /*
+    percentageFormat - returns BigDecimal n with the percentage format
+     */
     public static String percentageFormat(final float n) {
        return NumberFormat.getPercentInstance().format(n);
     }
 
+    /*
+    getFinalCharge - calculates and returns the final charge
+     */
     public BigDecimal getFinalCharge() {
         float charge = calculateChargeDays(tool) * Float.parseFloat(tool.getRate().getDailyCharge());
         charge = charge - Float.parseFloat(getDiscountAmount().toString());
         return new BigDecimal(charge).setScale(2, RoundingMode.HALF_UP);
     }
 
+    /*
+    calculateChargeDays - calculates and returns the number of actual days for which to impose the charge
+     */
     public int calculateChargeDays(final Tool tool) {
         int count = 0;
 
@@ -141,16 +165,25 @@ public class RentalAgreement {
         return count;
     }
 
+    /*
+    isHoliday - calculates and returns whether the passed in date in a holiday
+     */
     private boolean isHoliday(final LocalDate currentDate) {
         return  currentDate.equals(Holidays.getIndependenceDay(currentDate)) ||
                 currentDate.equals(Holidays.getLaborDay(currentDate));
     }
 
+    /*
+    isWeekEnd - returns whether the dayOfWeek is a weekend day
+     */
     private boolean isWeekEnd(final DayOfWeek dayOfWeek) {
         return  dayOfWeek == DayOfWeek.SATURDAY ||
                 dayOfWeek == DayOfWeek.SUNDAY;
     }
 
+    /*
+    isWeekday - returns whether the dayOfWeek is a week day
+     */
     private boolean isWeekday(final DayOfWeek dayOfWeek) {
         return  dayOfWeek == DayOfWeek.MONDAY ||
                 dayOfWeek == DayOfWeek.TUESDAY ||
@@ -159,6 +192,9 @@ public class RentalAgreement {
                 dayOfWeek == DayOfWeek.FRIDAY;
     }
 
+    /*
+    validateInput - validates the proper range of numDays and discountPercent
+     */
     public boolean validateInput() {
         boolean returnValue = true;
         final RentalAgreementValidator validator = new RentalAgreementValidator(this);

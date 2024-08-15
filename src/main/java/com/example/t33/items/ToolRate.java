@@ -1,5 +1,8 @@
 package com.example.t33.items;
 
+/*
+ToolRate - enum for tool rates and whether there are weekday, weekend or holiday charges
+ */
 public enum ToolRate {
     LADDERRATE(ToolType.LADDER, "1.99", true, true, false),
     CHAINSAWRATE(ToolType.CHAINSAW, "1.49", true, false,true),
@@ -7,6 +10,9 @@ public enum ToolRate {
     NONE(ToolType.NONE, "0.00", false, false, false);
 
 
+    /*
+    contructor
+     */
     private ToolRate(ToolType toolType, String dailyCharge, boolean weekdayCharge, boolean weekendCharge, boolean holidayCharge) {
         this.toolType = toolType;
         this.dailyCharge = dailyCharge;
