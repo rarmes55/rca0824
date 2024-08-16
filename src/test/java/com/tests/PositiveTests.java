@@ -38,17 +38,6 @@ public class PositiveTests {
         Assertions.assertEquals(ra1.getFinalCharge(), new BigDecimal("3.35"));
     }
 
-    // Test 4
-    @Test
-    void handleLaborDayTest1() {
-        final RentalAgreement ra1 = new RentalAgreement(Tool.JAKD, LocalDate.of(2015, 9, 3), 6, 0);
-        Assertions.assertTrue(ra1.validateInput());
-        Assertions.assertTrue(AcmeToolRentalStore.INSTANCE.processRentalAgreement(ra1));
-        Assertions.assertEquals(3, ra1.calculateChargeDays(ra1.getTool()));
-        Assertions.assertEquals(ra1.getPreDiscountCharge(), new BigDecimal("8.97"));
-        Assertions.assertEquals(ra1.getDiscountAmount(), new BigDecimal("0.00"));
-        Assertions.assertEquals(ra1.getFinalCharge(), new BigDecimal("8.97"));
-    }
 
 
     // Test 5
@@ -76,4 +65,53 @@ public class PositiveTests {
         Assertions.assertEquals(ra1.getFinalCharge(), new BigDecimal("1.49"));
     }
 
+
+
+    // Test 4
+    @Test
+    void handleLaborDayTest1() {
+        final RentalAgreement ra1 = new RentalAgreement(Tool.JAKD, LocalDate.of(2015, 9, 3), 6, 0);
+        Assertions.assertTrue(ra1.validateInput());
+        Assertions.assertTrue(AcmeToolRentalStore.INSTANCE.processRentalAgreement(ra1));
+        Assertions.assertEquals(3, ra1.calculateChargeDays(ra1.getTool()));
+        Assertions.assertEquals(ra1.getPreDiscountCharge(), new BigDecimal("8.97"));
+        Assertions.assertEquals(ra1.getDiscountAmount(), new BigDecimal("0.00"));
+        Assertions.assertEquals(ra1.getFinalCharge(), new BigDecimal("8.97"));
+    }
+
+
+
+    @Test
+    void handleLaborDayTest2() {
+        final RentalAgreement ra1 = new RentalAgreement(Tool.LADW, LocalDate.of(2015, 9, 1), 8, 10);
+        Assertions.assertTrue(ra1.validateInput());
+        Assertions.assertTrue(AcmeToolRentalStore.INSTANCE.processRentalAgreement(ra1));
+        Assertions.assertEquals(7, ra1.calculateChargeDays(ra1.getTool()));
+        Assertions.assertEquals(ra1.getPreDiscountCharge(), new BigDecimal("13.93"));
+        Assertions.assertEquals(ra1.getDiscountAmount(), new BigDecimal("1.39"));
+        Assertions.assertEquals(ra1.getFinalCharge(), new BigDecimal("12.54"));
+    }
+
+    @Test
+    void handleLaborDayTest3() {
+        final RentalAgreement ra1 = new RentalAgreement(Tool.LADW, LocalDate.of(2020, 9, 1), 3, 50);
+        Assertions.assertTrue(ra1.validateInput());
+        Assertions.assertTrue(AcmeToolRentalStore.INSTANCE.processRentalAgreement(ra1));
+        Assertions.assertEquals(3, ra1.calculateChargeDays(ra1.getTool()));
+        Assertions.assertEquals(ra1.getPreDiscountCharge(), new BigDecimal("5.97"));
+        Assertions.assertEquals(ra1.getDiscountAmount(), new BigDecimal("2.98"));
+        Assertions.assertEquals(ra1.getFinalCharge(), new BigDecimal("2.99"));
+    }
+
+
+    @Test
+    void handleLaborDayTest4() {
+        final RentalAgreement ra1 = new RentalAgreement(Tool.LADW, LocalDate.of(2022, 9, 4), 5, 20);
+        Assertions.assertTrue(ra1.validateInput());
+        Assertions.assertTrue(AcmeToolRentalStore.INSTANCE.processRentalAgreement(ra1));
+        Assertions.assertEquals(4, ra1.calculateChargeDays(ra1.getTool()));
+        Assertions.assertEquals(ra1.getPreDiscountCharge(), new BigDecimal("7.96"));
+        Assertions.assertEquals(ra1.getDiscountAmount(), new BigDecimal("1.59"));
+        Assertions.assertEquals(ra1.getFinalCharge(), new BigDecimal("6.37"));
+    }
 }
