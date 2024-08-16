@@ -4,7 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 /*
-Holidays - Singleton - returns the observed day for Fourth of July or Labor Day
+Holidays - Singleton - returns the holiday observed for Fourth of July and Labor Day
  */
 public enum Holidays {
     INSTANCE;
